@@ -13,9 +13,15 @@ const App : React.FC = () => {
 
   const getPeople = async (pageNumber : number) => {
     const apiResponse = await fetch(`https://swapi.dev/api/people/?page=${pageNumber}`);
-    const json = await apiResponse.json() as { results: SWCharacter[] };
-    setCharacters(json.results);
+    try {
+      const json = await apiResponse.json() as { results: SWCharacter[] };
+      setCharacters(json.results);
+    } catch(err) {
+      // Application has permanent title with server response status so throw this away.
+      // Potentially do something more useful in future!
+    }
     setResponseStatus(apiResponse.status);
+    console.log(apiResponse.status);
   }
 
   useEffect(() => {
