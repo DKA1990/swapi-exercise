@@ -20,6 +20,9 @@ const App : React.FC = () => {
 
   return (
     <div className="App">
+      <header>
+        <h1 className="header">Star Wars Peeps</h1>
+      </header>
       <CharacterContainer characters={characters}/>
     </div>
   );
